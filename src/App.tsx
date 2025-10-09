@@ -12,6 +12,13 @@ import NOC from "@/pages/NOC";
 import Customers from "@/pages/Customers";
 import Billing from "@/pages/Billing";
 import Analytics from "@/pages/Analytics";
+import Ledger from "@/pages/Ledger";
+import Defaults from "@/pages/Defaults";
+import Complaints from "@/pages/Complaints";
+import Finance from "@/pages/Finance";
+import HR from "@/pages/HR";
+import Marketing from "@/pages/Marketing";
+import Security from "@/pages/Security";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +64,13 @@ const App = () => (
               <Route path="customers" element={<Customers />} />
               <Route path="billing" element={<Billing />} />
               <Route path="analytics" element={<Analytics />} />
+              <Route path="ledger" element={<Ledger />} />
+              <Route path="defaults" element={<Defaults />} />
+              <Route path="complaints" element={<Complaints />} />
+              <Route path="finance" element={<Finance />} />
+              <Route path="hr" element={<HR />} />
+              <Route path="marketing" element={<Marketing />} />
+              <Route path="security" element={<Security />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

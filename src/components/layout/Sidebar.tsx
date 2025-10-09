@@ -11,18 +11,27 @@ import {
   MessageSquare,
   FileText,
   LayoutDashboard,
+  BookOpen,
+  AlertTriangle,
+  Briefcase,
+  UserCircle,
+  TrendingUp,
 } from "lucide-react";
 
 const allModules = [
-  { path: "/dashboard", icon: LayoutDashboard, label: "Dashboard", roles: ["admin", "noc", "finance", "hr"] },
+  { path: "/dashboard", icon: LayoutDashboard, label: "Dashboard", roles: ["admin", "noc", "finance", "hr", "marketing", "compliance"] },
   { path: "/bandwidth", icon: Activity, label: "Bandwidth & Cables", roles: ["admin", "noc"] },
   { path: "/noc", icon: Network, label: "NOC Monitoring", roles: ["admin", "noc"] },
-  { path: "/customers", icon: Users, label: "Customer Database", roles: ["admin", "finance"] },
+  { path: "/customers", icon: Users, label: "Customer Database", roles: ["admin", "finance", "marketing"] },
   { path: "/billing", icon: DollarSign, label: "Billing & Invoicing", roles: ["admin", "finance"] },
-  { path: "/analytics", icon: BarChart3, label: "Analytics & Reports", roles: ["admin", "finance", "noc"] },
-  { path: "/complaints", icon: MessageSquare, label: "Complaints", roles: ["admin", "hr"], placeholder: true },
-  { path: "/security", icon: Shield, label: "Security", roles: ["admin"], placeholder: true },
-  { path: "/reports", icon: FileText, label: "Reports", roles: ["admin", "finance"], placeholder: true },
+  { path: "/ledger", icon: BookOpen, label: "Ledger Management", roles: ["admin", "finance"] },
+  { path: "/defaults", icon: AlertTriangle, label: "Payment Defaults", roles: ["admin", "finance"] },
+  { path: "/complaints", icon: MessageSquare, label: "Complaints", roles: ["admin", "hr", "noc"] },
+  { path: "/finance", icon: FileText, label: "Finance & Accounting", roles: ["admin", "finance"] },
+  { path: "/hr", icon: UserCircle, label: "HR & Payroll", roles: ["admin", "hr"] },
+  { path: "/marketing", icon: TrendingUp, label: "Marketing & Sales", roles: ["admin", "marketing"] },
+  { path: "/analytics", icon: BarChart3, label: "Analytics & Reports", roles: ["admin", "finance", "noc", "marketing"] },
+  { path: "/security", icon: Shield, label: "Security & Compliance", roles: ["admin", "compliance"] },
 ];
 
 export default function Sidebar() {

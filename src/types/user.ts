@@ -1,4 +1,4 @@
-export type UserRole = "admin" | "noc" | "finance" | "hr";
+export type UserRole = "admin" | "noc" | "finance" | "hr" | "marketing" | "compliance";
 
 export interface User {
   id: string;
@@ -10,7 +10,9 @@ export interface User {
 
 export const ROLE_PERMISSIONS = {
   admin: ["all"],
-  noc: ["bandwidth", "network", "monitoring"],
-  finance: ["billing", "invoicing", "analytics"],
-  hr: ["complaints", "workforce"]
+  noc: ["bandwidth", "network", "monitoring", "complaints"],
+  finance: ["billing", "invoicing", "analytics", "ledger", "defaults"],
+  hr: ["complaints", "workforce", "payroll"],
+  marketing: ["leads", "campaigns", "sales"],
+  compliance: ["security", "audit", "regulatory"]
 };
