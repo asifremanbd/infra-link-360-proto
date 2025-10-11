@@ -67,17 +67,12 @@ export default function Sidebar() {
                   "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors relative",
                   isActive
                     ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                    : "hover:bg-sidebar-accent/50 text-sidebar-foreground/80",
-                  module.placeholder && "opacity-60 cursor-not-allowed"
+                    : "hover:bg-sidebar-accent/50 text-sidebar-foreground/80"
                 )
               }
-              onClick={(e) => module.placeholder && e.preventDefault()}
             >
               <Icon className="w-5 h-5" />
               <span className="text-sm">{module.label}</span>
-              {module.placeholder && (
-                <span className="ml-auto text-xs bg-muted px-2 py-0.5 rounded">Soon</span>
-              )}
             </NavLink>
           );
         })}
