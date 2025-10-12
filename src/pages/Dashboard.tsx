@@ -8,7 +8,7 @@ import { formatBDT } from "@/lib/bdtUtils";
 import { useLocalization } from "@/contexts/LocalizationContext";
 import { Card } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from "recharts";
-import { Activity, Users, DollarSign, TrendingUp, Network, AlertCircle } from "lucide-react";
+import { Activity, Users, Banknote, TrendingUp, Network, AlertCircle, DollarSign } from "lucide-react";
 
 export default function Dashboard() {
   const { t, language } = useLocalization();
@@ -33,7 +33,7 @@ export default function Dashboard() {
         <StatCard
           title={t('totalRevenue')}
           value={formatBDT(kpiMetrics.totalRevenue)}
-          icon={DollarSign}
+          icon={Banknote}
           trend={{ value: 12.5, isPositive: true }}
           variant="success"
         />

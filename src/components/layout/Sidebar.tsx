@@ -47,15 +47,15 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex flex-col">
       <div className="p-6 border-b border-sidebar-border">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <img 
             src={cdnetLogo} 
             alt="CdNet Communications" 
-            className="h-10 w-auto object-contain"
+            className="h-12 w-auto object-contain flex-shrink-0"
           />
-          <div>
-            <h1 className="font-bold text-lg">InfraLink 360</h1>
-            <p className="text-xs text-sidebar-foreground/70">CdNet Communications</p>
+          <div className="flex flex-col justify-center">
+            <h1 className="font-bold text-xl leading-tight text-sidebar-foreground">InfraLink 360</h1>
+            <p className="text-xs text-sidebar-foreground/60 mt-0.5 font-normal">CdNet Communications</p>
           </div>
         </div>
       </div>

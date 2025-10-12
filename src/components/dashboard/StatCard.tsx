@@ -22,10 +22,10 @@ export default function StatCard({ title, value, icon: Icon, trend, variant = "d
   };
 
   const iconStyles = {
-    default: "bg-primary text-primary-foreground",
-    success: "bg-success text-success-foreground",
-    warning: "bg-warning text-warning-foreground",
-    critical: "bg-critical text-critical-foreground",
+    default: "bg-primary/10 text-primary border border-primary/20",
+    success: "bg-success/10 text-success border border-success/20",
+    warning: "bg-warning/10 text-warning border border-warning/20",
+    critical: "bg-critical/10 text-critical border border-critical/20",
   };
 
   return (
