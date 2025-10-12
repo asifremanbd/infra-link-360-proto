@@ -47,37 +47,37 @@ const App = () => (
     <TooltipProvider>
       <LocalizationProvider>
         <AuthProvider>
-          <Toaster />
-          <Sonner />
           <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="bandwidth" element={<Bandwidth />} />
-              <Route path="noc" element={<NOC />} />
-              <Route path="customers" element={<Customers />} />
-              <Route path="billing" element={<Billing />} />
-              <Route path="analytics" element={<Analytics />} />
-              <Route path="ledger" element={<Ledger />} />
-              <Route path="defaults" element={<Defaults />} />
-              <Route path="complaints" element={<Complaints />} />
-              <Route path="finance" element={<Finance />} />
-              <Route path="hr" element={<HR />} />
-              <Route path="marketing" element={<Marketing />} />
-              <Route path="security" element={<Security />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+            <Toaster />
+            <Sonner />
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <DashboardLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="bandwidth" element={<Bandwidth />} />
+                <Route path="noc" element={<NOC />} />
+                <Route path="customers" element={<Customers />} />
+                <Route path="billing" element={<Billing />} />
+                <Route path="analytics" element={<Analytics />} />
+                <Route path="ledger" element={<Ledger />} />
+                <Route path="defaults" element={<Defaults />} />
+                <Route path="complaints" element={<Complaints />} />
+                <Route path="finance" element={<Finance />} />
+                <Route path="hr" element={<HR />} />
+                <Route path="marketing" element={<Marketing />} />
+                <Route path="security" element={<Security />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
       </LocalizationProvider>
     </TooltipProvider>
   </QueryClientProvider>
