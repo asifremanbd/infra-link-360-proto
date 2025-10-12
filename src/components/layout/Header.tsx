@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bell, LogOut, Search, Languages } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import cdnetLogo from "@/assets/cdnet-logo.png";
 
 export default function Header() {
   const { user, logout } = useAuth();
@@ -25,6 +26,18 @@ export default function Header() {
             placeholder={t('search')}
             className="w-full pl-10 pr-4 py-2 bg-muted border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-4 mx-4">
+        <img 
+          src={cdnetLogo} 
+          alt="CdNet Communications" 
+          className="h-10 w-auto object-contain flex-shrink-0"
+        />
+        <div className="flex flex-col justify-center">
+          <h1 className="font-bold text-base leading-tight text-foreground">InfraLink 360</h1>
+          <p className="text-xs text-muted-foreground mt-0.5 font-normal">CdNet Communications</p>
         </div>
       </div>
 
