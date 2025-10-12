@@ -1,35 +1,51 @@
 import StatCard from "@/components/dashboard/StatCard";
 import AlertsList from "@/components/dashboard/AlertsList";
+import RegulatoryWidget from "@/components/dashboard/RegulatoryWidget";
+import RegionalMapWidget from "@/components/dashboard/RegionalMapWidget";
+import ComplianceBadges from "@/components/dashboard/ComplianceBadges";
 import { kpiMetrics, bandwidthData } from "@/data/mockData";
+import { formatBDT } from "@/lib/bdtUtils";
+import { useLocalization } from "@/contexts/LocalizationContext";
 import { Card } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from "recharts";
 import { Activity, Users, DollarSign, TrendingUp, Network, AlertCircle } from "lucide-react";
 
 export default function Dashboard() {
+  const { t, language } = useLocalization();
+  
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Executive Dashboard</h1>
-        <p className="text-muted-foreground">Real-time overview of InfraLink 360 operations</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            {language === 'en' ? 'Executive Dashboard' : 'নির্বাহী ড্যাশবোর্ড'}
+          </h1>
+          <p className="text-muted-foreground">
+            {language === 'en' 
+              ? 'Real-time overview of InfraLink 360 operations | Dhaka, Bangladesh' 
+              : 'ইনফ্রালিংক ৩৬০ অপারেশনের রিয়েল-টাইম ওভারভিউ | ঢাকা, বাংলাদেশ'}
+          </p>
+        </div>
+        <ComplianceBadges />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
-          title="Total Revenue"
-          value={`$${(kpiMetrics.totalRevenue / 1000).toFixed(0)}K`}
+          title={t('totalRevenue')}
+          value={formatBDT(kpiMetrics.totalRevenue)}
           icon={DollarSign}
           trend={{ value: 12.5, isPositive: true }}
           variant="success"
         />
         <StatCard
-          title="Active Customers"
-          value={kpiMetrics.activeCustomers}
+          title={t('activeCustomers')}
+          value={kpiMetrics.activeCustomers.toString()}
           icon={Users}
           trend={{ value: 8.2, isPositive: true }}
           variant="default"
         />
         <StatCard
-          title="Avg Bandwidth Utilization"
+          title={t('bandwidthUtilization')}
           value={`${kpiMetrics.avgBandwidthUtil}%`}
           icon={Activity}
           trend={{ value: 5.3, isPositive: false }}
@@ -48,14 +64,22 @@ export default function Dashboard() {
         <Card className="lg:col-span-2 p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-semibold">Real-Time Bandwidth Utilization</h3>
-              <p className="text-sm text-muted-foreground">Last 24 hours across all submarine cables</p>
+              <h3 className="text-lg font-semibold">
+                {language === 'en' ? 'Real-Time Bandwidth Utilization' : 'রিয়েল-টাইম ব্যান্ডউইথ ব্যবহার'}
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                {language === 'en' ? 'Last 24 hours across all submarine cables' : 'সমস্ত সাবমেরিন ক্যাবলে বিগত ২৪ ঘন্টা'}
+              </p>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-chart-1"></div>
-              <span className="text-sm text-muted-foreground">Utilization</span>
+              <span className="text-sm text-muted-foreground">
+                {language === 'en' ? 'Utilization' : 'ব্যবহার'}
+              </span>
               <div className="w-3 h-3 rounded-full bg-critical ml-4"></div>
-              <span className="text-sm text-muted-foreground">Threshold (80%)</span>
+              <span className="text-sm text-muted-foreground">
+                {language === 'en' ? 'Threshold (80%)' : 'সীমা (৮০%)'}
+              </span>
             </div>
           </div>
           <ResponsiveContainer width="100%" height={300}>
@@ -97,7 +121,9 @@ export default function Dashboard() {
 
         <div className="space-y-6">
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Key Metrics</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              {language === 'en' ? 'Key Metrics' : 'মূল মেট্রিক্স'}
+            </h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">SLA Compliance</span>
@@ -124,9 +150,13 @@ export default function Dashboard() {
                 <TrendingUp className="w-5 h-5 text-primary-foreground" />
               </div>
               <div>
-                <h4 className="font-semibold mb-1">Predictive Analytics</h4>
+                <h4 className="font-semibold mb-1">
+                  {language === 'en' ? 'Predictive Analytics' : 'পূর্বাভাস বিশ্লেষণ'}
+                </h4>
                 <p className="text-sm text-muted-foreground">
-                  Forecasting 87% utilization by June. Consider capacity expansion.
+                  {language === 'en' 
+                    ? 'Forecasting 87% utilization by June. Consider capacity expansion.' 
+                    : 'জুন মাসের মধ্যে ৮৭% ব্যবহারের পূর্বাভাস। ক্ষমতা সম্প্রসারণ বিবেচনা করুন।'}
                 </p>
               </div>
             </div>
@@ -134,11 +164,17 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <RegulatoryWidget />
+        <RegionalMapWidget />
         <AlertsList />
-        
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            {language === 'en' ? 'Quick Actions' : 'দ্রুত কার্যক্রম'}
+          </h3>
           <div className="grid grid-cols-2 gap-3">
             <button className="p-4 rounded-lg border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left">
               <Activity className="w-6 h-6 text-primary mb-2" />

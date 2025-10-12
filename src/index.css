@@ -93,4 +93,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+  
+  .font-bengali {
+    font-family: 'Noto Sans Bengali', sans-serif;
+  }
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLocalization } from "@/contexts/LocalizationContext";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { UserRole } from "@/types/user";
-import { Activity, User, DollarSign, Users } from "lucide-react";
+import { Activity, User, DollarSign, Users, Languages } from "lucide-react";
+import cdnetLogo from "@/assets/cdnet-logo.png";
 
 const roles = [
   { value: "admin" as UserRole, label: "Administrator", icon: Activity, description: "Full system access" },
@@ -16,6 +18,7 @@ const roles = [
 export default function LoginPage() {
   const [selectedRole, setSelectedRole] = useState<UserRole | null>(null);
   const { login } = useAuth();
+  const { language, setLanguage } = useLocalization();
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -33,14 +36,31 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10 relative">
+      {/* Language Toggle */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setLanguage(language === 'en' ? 'bn' : 'en')}
+        className="absolute top-4 right-4 gap-2"
+      >
+        <Languages className="w-4 h-4" />
+        {language === 'en' ? 'বাংলা' : 'English'}
+      </Button>
+
       <Card className="w-full max-w-2xl p-8 shadow-lg">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl mb-4">
-            <Activity className="w-8 h-8 text-primary-foreground" />
+          <div className="inline-flex items-center justify-center mb-4">
+            <img 
+              src={cdnetLogo} 
+              alt="CdNet Communications" 
+              className="h-20 w-auto object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">InfraLink 360</h1>
-          <p className="text-muted-foreground">Select your role to access the platform</p>
+          <p className="text-muted-foreground">
+            {language === 'en' ? 'CdNet Communications | Select your role' : 'সিডিনেট কমিউনিকেশনস | আপনার ভূমিকা নির্বাচন করুন'}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

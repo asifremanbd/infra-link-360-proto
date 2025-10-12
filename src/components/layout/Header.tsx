@@ -1,11 +1,13 @@
 import { useAuth } from "@/contexts/AuthContext";
+import { useLocalization } from "@/contexts/LocalizationContext";
 import { Button } from "@/components/ui/button";
-import { Bell, LogOut, Search } from "lucide-react";
+import { Bell, LogOut, Search, Languages } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { user, logout } = useAuth();
+  const { language, setLanguage, t } = useLocalization();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -20,13 +22,25 @@ export default function Header() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Search modules, customers, invoices..."
+            placeholder={t('search')}
             className="w-full pl-10 pr-4 py-2 bg-muted border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
       </div>
 
       <div className="flex items-center gap-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setLanguage(language === 'en' ? 'bn' : 'en')}
+          className="gap-2"
+        >
+          <Languages className="w-4 h-4" />
+          {language === 'en' ? 'বাংলা' : 'English'}
+        </Button>
+
+        <div className="h-6 w-px bg-border" />
+
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="w-5 h-5" />
           <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 bg-critical text-critical-foreground">
@@ -43,7 +57,7 @@ export default function Header() {
           className="gap-2"
         >
           <LogOut className="w-4 h-4" />
-          Logout
+          {t('logout')}
         </Button>
       </div>
     </header>

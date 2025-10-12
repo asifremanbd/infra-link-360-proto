@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLocalization } from "@/contexts/LocalizationContext";
 import { cn } from "@/lib/utils";
+import cdnetLogo from "@/assets/cdnet-logo.png";
 import {
   Activity,
   BarChart3,
@@ -36,6 +38,7 @@ const allModules = [
 
 export default function Sidebar() {
   const { user } = useAuth();
+  const { t } = useLocalization();
 
   const visibleModules = allModules.filter((module) =>
     module.roles.includes(user?.role || "")
@@ -45,12 +48,14 @@ export default function Sidebar() {
     <aside className="w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex flex-col">
       <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-sidebar-primary to-secondary rounded-lg flex items-center justify-center">
-            <Activity className="w-6 h-6 text-sidebar-primary-foreground" />
-          </div>
+          <img 
+            src={cdnetLogo} 
+            alt="CdNet Communications" 
+            className="h-10 w-auto object-contain"
+          />
           <div>
             <h1 className="font-bold text-lg">InfraLink 360</h1>
-            <p className="text-xs text-sidebar-foreground/70">Enterprise Platform</p>
+            <p className="text-xs text-sidebar-foreground/70">CdNet Communications</p>
           </div>
         </div>
       </div>
@@ -72,7 +77,7 @@ export default function Sidebar() {
               }
             >
               <Icon className="w-5 h-5" />
-              <span className="text-sm">{module.label}</span>
+              <span className="text-sm">{t(module.path.replace('/', ''))}</span>
             </NavLink>
           );
         })}
